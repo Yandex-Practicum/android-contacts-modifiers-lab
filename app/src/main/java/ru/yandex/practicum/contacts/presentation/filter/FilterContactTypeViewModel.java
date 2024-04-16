@@ -17,7 +17,7 @@ import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactTypeU
 import ru.yandex.practicum.contacts.utils.model.ContactTypeUtils;
 import ru.yandex.practicum.contacts.utils.model.FilterContactTypeUtils;
 
-public class FilterContactTypeViewModel extends BaseBottomSheetViewModel {
+class FilterContactTypeViewModel extends BaseBottomSheetViewModel {
 
     private final FilterContactUiState uiState = new FilterContactUiState();
     private final MutableLiveData<List<FilterContactTypeUi>> filterContactTypesLiveDate = new MutableLiveData<>();
@@ -41,7 +41,7 @@ public class FilterContactTypeViewModel extends BaseBottomSheetViewModel {
 
     @Override
     public void onApplyClick() {
-        uiState.newSelectedContactTypes = selectedFilterContactTypes;
+        uiState.setNewSelectedContactTypes(selectedFilterContactTypes);
         updateUiState();
     }
 
@@ -75,7 +75,7 @@ public class FilterContactTypeViewModel extends BaseBottomSheetViewModel {
     }
 
     private void updateUiState() {
-        uiState.isApplyEnable = !defaultFilterContactTypes.equals(selectedFilterContactTypes) && !selectedFilterContactTypes.isEmpty();
+        uiState.setApplyEnable(!defaultFilterContactTypes.equals(selectedFilterContactTypes) && !selectedFilterContactTypes.isEmpty());
         uiStateLiveDate.setValue(uiState);
     }
 
